@@ -8,7 +8,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/whoami", function (request, response) {
-  var json = {"ip": request.ip, "language": request.headers["accept-language"], "software": request.headers["user-agent"]};
+  var json = {"ip": request.headers["x-forwarded-for"] || request.ip, "language": request.headers["accept-language"], "software": request.headers["user-agent"]};
   response.send(json);
 });
 
